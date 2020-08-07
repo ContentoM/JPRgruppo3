@@ -1,0 +1,28 @@
+<h1>SPEDIZIONI</h1>
+<input type="text" [(ngModel)]="meme.spedizione.codice" placeholder="codice">
+<button (click)="searchCriteria()">Cerca</button>
+<button (click)="aggiungi()">Aggiungi</button>
+<br><br><br>
+<div class="check-element animate-show-hide" *ngIf="aggiungiStateSped || modificaStateSped">
+    <h1>Form Dati</h1>
+    <input type="text" [(ngModel)]="meme.temp.codice" placeholder="codice">
+    <input type="text" [(ngModel)]="meme.temp.nome" placeholder="nome">
+    <input type="text" [(ngModel)]="meme.temp.prezzoKg" placeholder="prezzoKg">
+    <button (click)="conferma()">Conferma</button>
+    <button (click)="annulla()">Annulla</button>
+</div>
+<br>
+<table>
+    <tr>
+        <th>Codice</th>
+        <th>Nome</th>
+        <th>PrezzoKg</th>
+    </tr>
+    <tr *ngFor="let x of meme.spedizioni; index as i">
+        <td>{{x.codice}}</td>
+        <td>{{x.nome}}</td>
+        <td>{{x.prezzoKg}}</td>
+        <td><button (click)="modifica(x,i)">Modifica</button></td>
+        <td><button (click)="rimuovi(x.id)">Rimuovi</button></td>
+    </tr>
+</table>

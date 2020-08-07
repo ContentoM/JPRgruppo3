@@ -1,0 +1,44 @@
+<h1>CATEGORIA</h1>
+<br>
+<input type="text" [(ngModel)]="mem.categoria.descrizione" placeholder="categoria">
+<button (click)="searchCriteria()">Cerca</button>
+<button (click)="aggiungi()">Aggiungi</button>
+
+<br><br><br>
+
+<div [ngSwitch]="!aggiungiState || !modificaState || !descrizioneState" class="check-element animate-show-hide">
+    <div *ngSwitchCase="aggiungiState && !modificaState && !descrizioneState">
+        <h3>Form dati</h3>
+        <input type="text" [(ngModel)]="mem.categTemp.descrizione" placeholder="descrizione">
+        <button (click)="conferma()">Conferma</button>
+        <button (click)="annulla()">Annulla</button>
+    </div>
+    <div *ngSwitchCase="modificaState && !aggiungiState && !descrizioneState ">
+        <h3>Form dati</h3>
+        <input type="text" [(ngModel)]="mem.categTemp.descrizione" placeholder="descrizione">
+        <button (click)="conferma()">Conferma</button>
+        <button (click)="annulla()">Annulla</button>
+    </div>
+    <div *ngSwitchCase="descrizioneState && !modificaState && !aggiungiState">
+        <h3>Form dati</h3>
+        <input type="text" readonly [(ngModel)]="mem.categTemp.descrizione" placeholder="descrizione">
+        <button (click)="conferma()" hidden >Conferma</button>
+        <button (click)="annulla()" hidden>Annulla</button>
+    </div>
+    <div *ngSwitchDefault>
+        </div>
+</div>
+<br><br><br>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Descrizione</th>
+    </tr>
+    <tr  *ngFor="let c of mem.categorie; index as i">
+        <td (click)="visualizzaDettagliCat(c, i)" (click)="descrizioneState= !descrizioneState" class="clickable">{{c.id}}</td>
+        <td (click)="visualizzaDettagliCat(c, i)" (click)="descrizioneState= !descrizioneState" class="clickable">{{c.descrizione}}</td>
+        <td><button (click)="modifica(c,i)">Modifica</button></td>
+        <td (click)="visualizzaDettagliCat(c, i)" (click)="descrizioneState= !descrizioneState" class="clickable"><button (click)="rimuovi(c.id)">Rimuovi</button></td>
+    </tr>
+</table>
